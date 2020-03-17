@@ -1,3 +1,5 @@
+## DEPRECATED/NOT CURRENTLY IN USE
+
 import pandas as pd
 import censusgeocode as cg
 from tqdm import tqdm

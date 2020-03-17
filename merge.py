@@ -88,12 +88,12 @@ def merge_voucher_data(voter_filename,data_filename,new_filename,year):
 if __name__ == '__main__':
     # print("reformatting the voter file")
     # utils.reformat_voucher_file(2019)
-    utils.reformat_voucher_file(2017)
+    # utils.reformat_voucher_file(2017)
 
-    # print("merging 2020 voter file with 2019 dvp data")
-    # data_file_2019_voucher = "/Users/abaral/src/thesis/results/2019_voucher_file_formatted.csv"
-    # voter_file = "/Users/abaral/src/thesis/wa_voter_file_02_19_2020/202002_VRDB_Extract.txt"
-    # merge_voucher_data(voter_file,data_file_2019_voucher,"results/2019_vouchers_voter_file_merged.csv",2019)
+    print("merging 2020 voter file with 2019 dvp data")
+    data_file_2019_voucher = "/Users/abaral/src/thesis/results/2019_voucher_file_formatted.csv"
+    voter_file = "/Users/abaral/src/thesis/wa_voter_file_02_19_2020/202002_VRDB_Extract.txt"
+    merge_voucher_data(voter_file,data_file_2019_voucher,"results/2019_vouchers_voter_file_merged.csv",2019)
 
     print("merging 2020 voter file with 2017 dvp data")
     data_file_2017_voucher = "/Users/abaral/src/thesis/results/2017_voucher_file_formatted.csv"
