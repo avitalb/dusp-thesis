@@ -13,11 +13,11 @@ def get_age(ref_date,born):
 # 3: 45–59
 # 4: 60 years or older.
 def get_age_bucket(age):
-    if age >= 18 and age <= 29:
+    if age <= 29:
         return 1
     elif age <= 44:
         return 2
-    elif age <- 59:
+    elif age <= 59:
         return 3
     else:
         return 4
