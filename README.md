@@ -14,6 +14,8 @@ and handling the data from the cash contributions (data of direction donations t
 3: 45–59
 4: 60 years or older
 
+(making sure to remove duplicates as participants can donate multiple democracy vouchers)
+
 2) run `geocoding.py` to geocode addresses and add their respective census tracts to the csv
 
 3) run `census_tracts_calc.py` to assign an income quintile to each entry, using their census tract
@@ -25,4 +27,4 @@ and handling the data from the cash contributions (data of direction donations t
 6) run `plotting.py` to make graphs of the data
 
 ## Cash Contributions Data Wrangling
-Coming soon!
+1) run `cash_contributions.py` to merge the voter file and the cash contributions, and add age calculation and age bucket for each entry (making sure to remove duplicates)

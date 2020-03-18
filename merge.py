@@ -3,45 +3,6 @@ import numpy as np
 import datetime
 import utils
 
-# merging voter file to contributions file (fuzzy name matching)
-# def merge(voter_filename,data_filename,new_filename):
-#     voter_file = pd.read_csv(voter_filename,sep='|',encoding = "cp1252")
-#     data_file = pd.read_csv(data_filename)
-
-#     print("voter file",voter_file.head())
-#     print("data file",data_file.head())
-
-#     # rename donor file column 
-#     data_file.rename(columns = {'Participant ID (Participant) (Contact)':'participant_id'}, inplace = True) 
-
-#     print("voter file columns",voter_file.columns)
-#     print("donor file columns",data_file.columns)
-#     voter_file.to_csv("voter_file_formatted.csv")
-
-#     # print # of rows and columns in voter file and donor file
-#     print("voter file shape",voter_file.shape)
-#     print("donor file shape",data_file.shape)
-
-#     # drop duplicates in donor file, to get people who used >= 1 democracy voucher
-#     vouchers_no_dups = data_file.drop_duplicates(subset="participant_id")
-#     print("size of no dups file",vouchers_no_dups.shape)
-#     print("vouchers no dups",vouchers_no_dups.head())
-
-#     # in donor file, add first and last name columns to prepare for matching with voter file
-#     name_split = vouchers_no_dups["Participant"].split()
-#     vouchers_no_dups['first_name'] = name_split.str[0]
-#     vouchers_no_dups['last_name'] = name_split.str[-1]
-
-#     # merge on last name, first name, zipcode, and street number (see McCabe/Herwig appendix)
-#     # hardcode column names for now
-#     merged = pd.merge(vouchers_no_dups, voter_file,  
-#         left_on=['first_name','last_name'], right_on=['FName','LName'], how="inner")
-#     print("merged",merged.head())
-#     print("merged size",merged.shape)
-#     merged.to_csv(new_filename)
-#     return merged
-
-
 # merging voucher data (can use washington stateid)
 def merge_voucher_data(voter_filename,data_filename,new_filename,year):
     ref_date = 0

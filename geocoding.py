@@ -19,9 +19,8 @@ def geocode(f,seattle_acs,new_name):
 
 def geocode_util(num,name,typ,city,state,zipcode):
     addr = str(num) + " " + str(name) + " " + str(typ)
-    result = cg.address(addr, city=city, state=state, zipcode=zipcode,returntype='geographies')
-    
     try:
+        result = cg.address(addr, city=city, state=state, zipcode=zipcode,returntype='geographies')
         tract = result[0]['geographies']['Census Tracts'][0]['GEOID']
     except:
         tract = None
