@@ -38,7 +38,7 @@ if __name__ == '__main__':
     plot(vouchers_2019,2019,True)
     plot(vouchers_2017,2017,True)
 
-    cash_2017 = 'results/2017_cash_ethnicity_merged_geocoded.csv"
-    cash_2019 = "results/2019_cash_ethnicity_merged_geocoded.csv"
+    cash_2017 = 'results/2017_cash_all_cols.csv"
+    cash_2019 = "results/2019_cash_all_cols.csv"
     plot(cash_2019,2019,False)
     plot(cash_2017,2017,False)

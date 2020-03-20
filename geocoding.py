@@ -76,7 +76,7 @@ if __name__ == '__main__':
     geocode(merged_2019, df2,name_2017)
 
     print("geocode 2019 cash")
-    geocode("results/2019_cash_merged.csv", df2,"results/2019_cash_ethnicity_merged_geocoded.csv")
+    geocode("results/2019_cash_merged.csv", df2,"results/2019_cash_merged_geocoded.csv")
 
     print("geocode 2017 cash")
-    geocode("results/2017_cash_merged.csv", df2,"results/2017_cash_ethnicity_merged_geocoded.csv")
+    geocode("results/2017_cash_merged.csv", df2,"results/2017_cash_merged_geocoded.csv")
