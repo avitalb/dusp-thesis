@@ -37,10 +37,18 @@ if __name__ == '__main__':
     new_2019_name = "results/2019_vouchers_voter_file_ethnicity.csv"
     new_2017_name = "results/2017_vouchers_voter_file_ethnicity.csv"
 
-    print("add ethnicity for 2019")
-    add_ethnicity(merged_2019,new_2019_name)
+    # print("add ethnicity for 2019 vouchers")
+    # add_ethnicity(merged_2019,new_2019_name)
 
-    #df size before dropping null ethnicity (10465, 51)
-    #df size after dropping null ethnicity (10463, 51)
-    print("add ethnicity for 2017")
-    add_ethnicity(merged_2017,new_2017_name)
+    # #df size before dropping null ethnicity (10465, 51)
+    # #df size after dropping null ethnicity (10463, 51)
+    # print("add ethnicity for 2017 vouchers")
+    # add_ethnicity(merged_2017,new_2017_name)
+
+    # no change: df size after dropping null ethnicity (22534, 68)
+    print("add ethnicity for 2019 cash")
+    add_ethnicity("results/2019_cash_merged.csv","results/2019_cash_ethnicity.csv")
+
+    # no change: df size after dropping null ethnicity (6602, 68)
+    print("add ethnicity for 2017 cash")
+    add_ethnicity("results/2017_cash_merged.csv","results/2017_cash_ethnicity.csv")

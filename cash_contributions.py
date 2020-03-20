@@ -1,8 +1,9 @@
 import pandas as pd 
 import utils
+import datetime
 
 # PACs/groups that are NOT for municipal candidates - 2019 election
-NON_MUN_CAND_2019 = {'Alliance 4 Gun Responsibility', 'Civ Alliance (CASE)',
+NON_MUN_CAND_2019 = ['Alliance 4 Gun Responsibility', 'Civ Alliance (CASE)',
        'CivicAlliance4Prog Economy', 'Dist 1 Nbrs for Sm Bus.',
        'MBA KING & SNO - Affordable', 'Moms For Seattle',
        'NATIVE WOMEN&#39;S PAC', 'NBRHDS FOR SMART STREETS PAC', 'PALS',
@@ -11,18 +12,26 @@ NON_MUN_CAND_2019 = {'Alliance 4 Gun Responsibility', 'Civ Alliance (CASE)',
        'SEIU HLTHCARE775 QualCareCmte', 'UNITE HERE Local 8 PAC',
        'UNITE HERE TIP', 'WkgPpl4Affordable Seattle',
        'FAIRVOTE WA FOR SEATTLE CA-27',
-       'Accountability 4 Seattle',  'YESSEATTLELIBRARIES'}
+       'Accountability 4 Seattle',  'YESSEATTLELIBRARIES']
 
 # PACs/groups that are NOT for municipal candidates - 2017 election
-NON_MUN_CAND_2017 = {'Affordable Seattle', 'FUSE VOTES',
+NON_MUN_CAND_2017 = ['Affordable Seattle', 'FUSE VOTES',
        'Master Builders - Affdbl Housn', 
        'PLANNED PRNTHD VOTESNW WA PAC', 'HEATS',
        'REDUCE SEA HOMELESSNESS NOW', 'Seattleites for Rent Transpare',
        'BACK TO BASICS COMM', 
-       'COAL. FOR HLTHY KIDS & ED'}
+       'COAL. FOR HLTHY KIDS & ED']
        
 # merging voter file to contributions file (fuzzy name matching)
 def merge_cash(voter_filename,data_filename,new_filename,year):
+    ref_date = 0
+    if year == 2019:
+        # last day to designate vouchers for 2019 was November 29, 2019
+        ref_date = datetime.date(2019,11,29)
+    elif year == 2017:
+        # last day to designate vouchers for 2017 was December 1st, 2017
+        ref_date = datetime.date(2017,12,1)
+
     voter_file = pd.read_csv(voter_filename,sep='|',encoding = "cp1252")
     data_file = pd.read_csv(data_filename)
     
@@ -34,16 +43,17 @@ def merge_cash(voter_filename,data_filename,new_filename,year):
 
     # drop duplicates and irrelevant donations based on list above
     if year == 2019:
-        data_file = data_file[data_file.strCampaignName not in NON_MUN_CAND_2019]
+        data_file = data_file[~data_file.strCampaignName.isin(NON_MUN_CAND_2019)]
     elif year == 2017:
-        data_file = data_file[data_file.strCampaignName not in NON_MUN_CAND_2017]
+        data_file = data_file[~data_file.strCampaignName.isin(NON_MUN_CAND_2017)]
+
     data_file.drop_duplicates(subset=['intLinkID_SEEC'])
-    
+
     print("voter file shape",voter_file.shape)
     print("donor file shape",data_file.shape)
 
     # in donor file, add first and last name columns to prepare for matching with voter file
-    name_split = data_file["strTransactorName"].split()
+    name_split = data_file["strTransactorName"].str.split()
     data_file['first_name'] = name_split.str[0]
     data_file['last_name'] = name_split.str[-1]
 
@@ -71,10 +81,16 @@ if __name__ == "__main__":
     new_name_2017 = "results/2017_cash_merged.csv"
 
     print("merging 2019 cash contributions with voter file, adding age")
-    merge_cash(voter_file,cash_2019,new_name_2019,2019):
+    # voter file shape (4921002, 35)
+    # donor file shape (65638, 27)
+    # merged size (22534, 64)
+    merge_cash(voter_file,cash_2019,new_name_2019,2019)
 
     print("merging 2017 cash contributions with voter file, adding age")
-    merge_cash(voter_file,cash_2017,new_name_2017,2017):
+    # voter file shape (4921002, 35)
+    # donor file shape (38637, 27)
+    # merged size (6602, 64)
+    merge_cash(voter_file,cash_2017,new_name_2017,2017)
 
 
 
