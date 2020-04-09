@@ -20,5 +20,5 @@ if __name__ == '__main__':
     final_merge(geocoded_2019,added_ethnicity_2019,final_2019_name)
     final_merge(geocoded_2017,added_ethnicity_2017,final_2017_name)
 
-    # final_merge("results/2019_cash_merged_geocoded.csv","results/2019_cash_ethnicity.csv","results/2019_cash_all_cols.csv")
-    # final_merge("results/2017_cash_merged_geocoded.csv","results/2017_cash_ethnicity.csv","results/2017_cash_all_cols.csv")
+    final_merge("results/2019_cash_merged_geocoded.csv","results/2019_cash_ethnicity.csv","results/2019_cash_all_cols.csv")
+    final_merge("results/2017_cash_merged_geocoded.csv","results/2017_cash_ethnicity.csv","results/2017_cash_all_cols.csv")
