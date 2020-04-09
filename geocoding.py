@@ -7,7 +7,7 @@ import censusbatchgeocoder
 
 def geocode(f,seattle_acs,new_name):
     df = pd.read_csv(f)
-
+    print("size of df here",df.shape)
     df['RegStNum'] = df['RegStNum'].apply(str) 
     print("got here")
     df['address'] = df['RegStNum'] + " " + df['RegStName'] + " " + df['RegStType']
@@ -17,10 +17,10 @@ def geocode(f,seattle_acs,new_name):
     df['id'] = df.index
 
     filtered_df = df[['address',"city","state","zipcode","id"]]
-
     result = censusbatchgeocoder.geocode(filtered_df.to_dict("records"))
     filtered_df= pd.DataFrame(result)
-    df = pd.merge(df,filtered_df[['address','tract']],how="left",left_on = "address",right_on = "address")
+    print("filtered df size before merge",filtered_df.shape)
+    df = pd.merge(df,filtered_df[['id','tract']],how="left",left_on = "id",right_on = "id")
 
     print("df size before dropping null tracts",df.shape)
     df = df[df['tract'].notnull()]
@@ -31,8 +31,6 @@ def geocode(f,seattle_acs,new_name):
 
     # make both tract columns ints to avoid this error:  "ValueError: You are trying to merge on object and int64 columns. If you wish to proceed you should use pd.concat"
     df["tract"] = df["tract"].astype(int)
-
-    
     df = pd.merge(df,df2[['TRACT','income_quintile']],left_on='tract',right_on="TRACT", how='left')
 
     df.to_csv(new_name)
@@ -68,15 +66,22 @@ if __name__ == '__main__':
     df2 = pd.read_csv(seattle_acs)
 
     print("geocode 2019 vouchers")
-    # df size before dropping null tracts (249085, 51)
-    # df size after dropping null tracts (20549, 51)
+    # df size before dropping null tracts (21199, 51)
+    # df size after dropping null tracts (17797, 51)
     geocode(merged_2019, df2,name_2019)
 
-    print("geocode 2017 vouchers")
-    geocode(merged_2019, df2,name_2017)
 
+    # df size before dropping null tracts (10465, 56)
+    # df size after dropping null tracts (9039, 56)
+    print("geocode 2017 vouchers")
+    geocode(merged_2017, df2,name_2017)
+
+    # df size before dropping null tracts (22534, 73)
+    # df size after dropping null tracts (21805, 73)
     print("geocode 2019 cash")
     geocode("results/2019_cash_merged.csv", df2,"results/2019_cash_merged_geocoded.csv")
 
+    # df size before dropping null tracts (6602, 73)
+    # df size after dropping null tracts (6389, 73)
     print("geocode 2017 cash")
     geocode("results/2017_cash_merged.csv", df2,"results/2017_cash_merged_geocoded.csv")
