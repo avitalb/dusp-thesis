@@ -83,7 +83,7 @@ def plot(filename,year,dvp_flag,plot_color):
 if __name__ == '__main__':
     vouchers_2017 = 'results/2017_vouchers_voter_file_all_cols.csv'
     vouchers_2019 = 'results/2019_vouchers_voter_file_all_cols.csv'
-    plot(vouchers_2019,2019,True,"magenta")
+    plot(vouchers_2019,2019,True,"purple")
     plot(vouchers_2017,2017,True,"cyan")
 
     cash_2017 = "results/2017_cash_all_cols.csv"
