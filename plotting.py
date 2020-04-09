@@ -27,6 +27,7 @@ def plot(filename,year,dvp_flag):
         height = i.get_height()+i.get_height()/100
         if i.get_height() < 10:
             height = i.get_height() + 10
+        height = int(height)
         ethn_plot.text(i.get_x() + i.get_width()/2,height, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
     plt.savefig('graphs/' + title)
     plt.show()
@@ -41,6 +42,7 @@ def plot(filename,year,dvp_flag):
         height = i.get_height()+i.get_height()/100
         if i.get_height() < 10:
             height = i.get_height() + 10
+        height = int(height)
         age_plot.text(i.get_x() + i.get_width()/2, height, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
     title = 'Aggregated Age, ' + title_add
     age_plot.set_title(title)
@@ -56,6 +58,7 @@ def plot(filename,year,dvp_flag):
         height = i.get_height()+i.get_height()/100
         if i.get_height() < 10:
             height = i.get_height() + 10
+        height = int(height)
         income_plot.text(i.get_x() + i.get_width()/2, height, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
     title = 'Census Tract Income Quintile, ' + title_add
     income_plot.set_title(title)
@@ -69,6 +72,7 @@ def plot(filename,year,dvp_flag):
         height = i.get_height()+i.get_height()/100
         if i.get_height() < 10:
             height = i.get_height() + 10
+        height = int(height)
         gender_plot.text(i.get_x() + i.get_width()/2, height, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
     title = 'Voucher User Census Tract Gender, ' + title_add
     gender_plot.set_title(title)
