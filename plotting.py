@@ -19,10 +19,13 @@ def plot(filename,year,dvp_flag):
     # ethnicity plot
     ethn_counts = df['est_ethnicity'].value_counts()
     ethn_plot = ethn_counts.plot(kind="bar")
-    ethn_plot.set_title('Estimated Ethnicity, ' + title_add)
+    title = 'Estimated Ethnicity, ' + title_add
+    ethn_plot.set_title(title)
     for i in ethn_plot.patches:
         ethn_plot.text(i.get_x() + i.get_width()/2, i.get_height()+i.get_height()/100, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
+    plt.savefig('graphs/' + title)
     plt.show()
+
 
     # age plot
     age_counts = df['age_bucket'].value_counts()
@@ -31,7 +34,9 @@ def plot(filename,year,dvp_flag):
     age_plot = age_counts.plot(kind="bar")
     for i in age_plot.patches:
         age_plot.text(i.get_x() + i.get_width()/2, i.get_height()+i.get_height()/100, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
-    age_plot.set_title('Voucher User Age, ' + title_add)
+    title = 'Aggregated Age, ' + title_add
+    age_plot.set_title(title)
+    plt.savefig('graphs/' + title)
     plt.show()
 
     # census tract bucket
@@ -41,16 +46,19 @@ def plot(filename,year,dvp_flag):
     income_plot = income_counts.plot(kind="bar")
     for i in income_plot.patches:
         income_plot.text(i.get_x() + i.get_width()/2, i.get_height()+i.get_height()/100, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
-    income_plot.set_title('Voucher User Census Tract Income Quintile, ' + title_add)
+    title = 'Census Tract Income Quintile, ' + title_add
+    income_plot.set_title(title)
+    plt.savefig('graphs/' + title)
     plt.show()
-
 
     # gender
     gender_counts = df['Gender'].value_counts()
     gender_plot = gender_counts.plot(kind="bar")
     for i in gender_plot.patches:
         gender_plot.text(i.get_x() + i.get_width()/2, i.get_height()+i.get_height()/100, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
-    gender_plot.set_title('Voucher User Census Tract Gender, ' + title_add)
+    title = 'Voucher User Census Tract Gender, ' + title_add
+    gender_plot.set_title(title)
+    plt.savefig('graphs/' + title)
     plt.show()
     
 if __name__ == '__main__':
@@ -61,5 +69,5 @@ if __name__ == '__main__':
 
     cash_2017 = "results/2017_cash_all_cols.csv"
     cash_2019 = "results/2019_cash_all_cols.csv"
-    # plot(cash_2019,2019,False)
-    # plot(cash_2017,2017,False)
+    plot(cash_2019,2019,False)
+    plot(cash_2017,2017,False)
