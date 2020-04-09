@@ -9,6 +9,8 @@ def autolabel(rects):
                 ha='center', va='bottom')
 
 def plot(filename,year,dvp_flag):
+    mpl.style.use("seaborn")
+
     df = pd.read_csv(filename,low_memory = False)
     title_add = ""
     if dvp_flag:
@@ -22,7 +24,10 @@ def plot(filename,year,dvp_flag):
     title = 'Estimated Ethnicity, ' + title_add
     ethn_plot.set_title(title)
     for i in ethn_plot.patches:
-        ethn_plot.text(i.get_x() + i.get_width()/2, i.get_height()+i.get_height()/100, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
+        height = i.get_height()+i.get_height()/100
+        if i.get_height() < 10:
+            height = i.get_height() + 10
+        ethn_plot.text(i.get_x() + i.get_width()/2,height, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
     plt.savefig('graphs/' + title)
     plt.show()
 
@@ -33,7 +38,10 @@ def plot(filename,year,dvp_flag):
     age_counts = age_counts.rename(index={1: '18-29 years', 2: '30-44 years old',3:'45-59 years old',4:'60+ years'})
     age_plot = age_counts.plot(kind="bar")
     for i in age_plot.patches:
-        age_plot.text(i.get_x() + i.get_width()/2, i.get_height()+i.get_height()/100, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
+        height = i.get_height()+i.get_height()/100
+        if i.get_height() < 10:
+            height = i.get_height() + 10
+        age_plot.text(i.get_x() + i.get_width()/2, height, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
     title = 'Aggregated Age, ' + title_add
     age_plot.set_title(title)
     plt.savefig('graphs/' + title)
@@ -45,7 +53,10 @@ def plot(filename,year,dvp_flag):
     income_counts = income_counts.reindex(index = ["bottom", "fourth", "middle","second","top"])
     income_plot = income_counts.plot(kind="bar")
     for i in income_plot.patches:
-        income_plot.text(i.get_x() + i.get_width()/2, i.get_height()+i.get_height()/100, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
+        height = i.get_height()+i.get_height()/100
+        if i.get_height() < 10:
+            height = i.get_height() + 10
+        income_plot.text(i.get_x() + i.get_width()/2, height, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
     title = 'Census Tract Income Quintile, ' + title_add
     income_plot.set_title(title)
     plt.savefig('graphs/' + title)
@@ -55,7 +66,10 @@ def plot(filename,year,dvp_flag):
     gender_counts = df['Gender'].value_counts()
     gender_plot = gender_counts.plot(kind="bar")
     for i in gender_plot.patches:
-        gender_plot.text(i.get_x() + i.get_width()/2, i.get_height()+i.get_height()/100, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
+        height = i.get_height()+i.get_height()/100
+        if i.get_height() < 10:
+            height = i.get_height() + 10
+        gender_plot.text(i.get_x() + i.get_width()/2, height, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
     title = 'Voucher User Census Tract Gender, ' + title_add
     gender_plot.set_title(title)
     plt.savefig('graphs/' + title)
