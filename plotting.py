@@ -30,7 +30,8 @@ def plot(filename,year,dvp_flag,plot_color):
             height = i.get_height() + 10
         height = int(height)
         ethn_plot.text(i.get_x() + i.get_width()/2,height, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
-    plt.savefig('graphs/' + title)
+    # ethn_plot.layout.update(uniformtext_minsize=8, uniformtext_mode='overflow')
+    plt.savefig('graphs/' + title,bbox_inches = "tight")
     plt.show()
 
 
@@ -47,7 +48,7 @@ def plot(filename,year,dvp_flag,plot_color):
         age_plot.text(i.get_x() + i.get_width()/2, height, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
     title = 'Aggregated Age, ' + title_add
     age_plot.set_title(title)
-    plt.savefig('graphs/' + title)
+    plt.savefig('graphs/' + title, bbox_inches = "tight")
     plt.show()
 
     # census tract bucket
@@ -63,7 +64,7 @@ def plot(filename,year,dvp_flag,plot_color):
         income_plot.text(i.get_x() + i.get_width()/2, height, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
     title = 'Census Tract Income Quintile, ' + title_add
     income_plot.set_title(title)
-    plt.savefig('graphs/' + title)
+    plt.savefig('graphs/' + title,bbox_inches = "tight")
     plt.show()
 
     # gender
@@ -77,7 +78,7 @@ def plot(filename,year,dvp_flag,plot_color):
         gender_plot.text(i.get_x() + i.get_width()/2, height, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
     title = 'Reported Gender, ' + title_add
     gender_plot.set_title(title)
-    plt.savefig('graphs/' + title)
+    plt.savefig('graphs/' + title,bbox_inches = "tight")
     plt.show()
     
 if __name__ == '__main__':
