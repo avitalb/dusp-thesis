@@ -36,7 +36,7 @@ def plot(filename,year,dvp_flag,plot_color):
 
     # age plot
     age_counts = df['age_bucket'].value_counts()
-    age_counts = age_counts.reindex(index = [1., 2, 3,4])
+    age_counts = age_counts.reindex(index = [1, 2, 3,4])
     age_counts = age_counts.rename(index={1: '18-29 years', 2: '30-44 years old',3:'45-59 years old',4:'60+ years'})
     age_plot = age_counts.plot(kind="bar", color = plot_color )
     for i in age_plot.patches:
@@ -75,7 +75,7 @@ def plot(filename,year,dvp_flag,plot_color):
             height = i.get_height() + 10
         height = int(height)
         gender_plot.text(i.get_x() + i.get_width()/2, height, str(i.get_height()), horizontalalignment='center', fontsize=10,color='dimgrey')
-    title = 'Voucher User Census Tract Gender, ' + title_add
+    title = 'Reported Gender, ' + title_add
     gender_plot.set_title(title)
     plt.savefig('graphs/' + title)
     plt.show()
