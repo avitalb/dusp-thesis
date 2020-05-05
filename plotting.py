@@ -9,7 +9,7 @@ def autolabel(rects):
         plt.text(rect.get_x()+rect.get_width()/2., 1.05*height, '%d'%int(height),
                 ha='center', va='bottom')
 
-def plot(filename,year,dvp_flag,plot_color):
+def plot(filename,year,dvp_flag,plot_color,fig_num):
     mpl.style.use("seaborn")
     mpl.rcParams.update({'axes.titlesize': 16})
     df = pd.read_csv(filename,low_memory = False)
@@ -23,15 +23,17 @@ def plot(filename,year,dvp_flag,plot_color):
     # ethnicity plot
     ethn_counts = df['est_ethnicity'].value_counts()
     ethn_plot = ethn_counts.plot(kind="bar",color = plot_color)
-    title = 'Participants by Estimated Ethnicity, ' + title_add
-    ethn_plot.set_title(title)
+    title = "Figure " + str(fig_num) + ': Participants by Estimated Ethnicity, ' + title_add
+    ethn_plot.set_title(title, wrap = True)
     for i in ethn_plot.patches:
         height = i.get_height()+i.get_height()/100
         if i.get_height() < 10:
             height = i.get_height() + 10
         height = int(height)
         ethn_plot.text(i.get_x() + i.get_width()/2,height, str(int(i.get_height())), horizontalalignment='center', fontsize=10,color='dimgrey')
-    # ethn_plot.layout.update(uniformtext_minsize=8, uniformtext_mode='overflow')
+    txt= "Figure " + str(fig_num)
+    fig_num += 4 
+    # plt.figtext(0, 0, txt, wrap=True, horizontalalignment='center', fontsize=12)
     plt.savefig('graphs/' + title,bbox_inches = "tight")
     plt.show()
 
@@ -47,8 +49,9 @@ def plot(filename,year,dvp_flag,plot_color):
             height = i.get_height() + 10
         height = int(height)
         age_plot.text(i.get_x() + i.get_width()/2, height, str(int(i.get_height())), horizontalalignment='center', fontsize=10,color='dimgrey')
-    title = 'Participants by Aggregated Age, ' + title_add
-    age_plot.set_title(title)
+    title = "Figure " + str(fig_num) + ': Participants by Aggregated Age, ' + title_add
+    age_plot.set_title(title, wrap = True)
+    fig_num += 4 
     plt.savefig('graphs/' + title, bbox_inches = "tight")
     plt.show()
 
@@ -63,8 +66,9 @@ def plot(filename,year,dvp_flag,plot_color):
             height = i.get_height() + 10
         height = int(height)
         income_plot.text(i.get_x() + i.get_width()/2, height, str(int(i.get_height())), horizontalalignment='center', fontsize=10,color='dimgrey')
-    title = 'Participants by Census Tract Income Quintile, ' + title_add
-    income_plot.set_title(title)
+    title = "Figure " + str(fig_num) + ': Participants by Census Tract Income Quintile, ' + title_add
+    income_plot.set_title(title, wrap = True)
+    fig_num += 4
     plt.savefig('graphs/' + title,bbox_inches = "tight")
     plt.show()
 
@@ -77,18 +81,20 @@ def plot(filename,year,dvp_flag,plot_color):
             height = i.get_height() + 10
         height = int(height)
         gender_plot.text(i.get_x() + i.get_width()/2, height, str(int(i.get_height())), horizontalalignment='center', fontsize=10,color='dimgrey')
-    title = 'Participants by Reported Gender, ' + title_add
-    gender_plot.set_title(title)
+    title = "Figure " + str(fig_num) + ': Participants by Reported Gender, ' + title_add
+    gender_plot.set_title(title, wrap = True)
+    fig_num += 4
     plt.savefig('graphs/' + title,bbox_inches = "tight")
     plt.show()
     
 if __name__ == '__main__':
     vouchers_2017 = 'results/2017_vouchers_voter_file_all_cols.csv'
     vouchers_2019 = 'results/2019_vouchers_voter_file_all_cols.csv'
-    plot(vouchers_2019,2019,True,"C1") #purple
-    plot(vouchers_2017,2017,True,"C2") #cyan
+    plot(vouchers_2017,2017,True,"C1",2)
+    plot(vouchers_2019,2019,True,"C2",3)
 
     cash_2017 = "results/2017_cash_all_cols.csv"
     cash_2019 = "results/2019_cash_all_cols.csv"
-    plot(cash_2019,2019,False,"C3") #green
-    plot(cash_2017,2017,False,"C4") # yellow
+    plot(cash_2017,2017,False,"C3",4)
+    plot(cash_2019,2019,False,"C4",5)
+
