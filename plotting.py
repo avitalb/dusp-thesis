@@ -74,32 +74,32 @@ if __name__ == '__main__':
 
     # voucher age
     plotting(vouchers_2017, vouchers_2019, "Vouchers 2017", "Vouchers 2019", "Aggregated Age",["C1","C2"], 
-    "age_bucket", "Voucher Users in 2017 vs 2019: Participants by Aggregated Age", 1, "age", True)
+    "age_bucket", "Voucher Users in 2017 vs 2019: Participants by Aggregated Age", 2, "age", True)
     # cash age
     plotting(cash_2017, cash_2019, "Cash Contributors 2017", "Cash Contributors 2019", "Aggregated Age",["C3","C4"], 
-    "age_bucket", "Cash Contributors in 2017 vs 2019: Participants by Aggregated Age", 2, "age")
+    "age_bucket", "Cash Contributors in 2017 vs 2019: Participants by Aggregated Age", 3, "age")
 
     # voucher income
     plotting(vouchers_2017, vouchers_2019, "Vouchers 2017", "Vouchers 2019", "Neighborhood Income Quintile",["C1","C2"], 
-    "income_quintile", "Voucher Users in 2017 vs 2019: Participants by Census Tract Income Quintile", 3, "income")
+    "income_quintile", "Voucher Users in 2017 vs 2019: Participants by Census Tract Income Quintile", 4, "income")
     # cash income 
     plotting(cash_2017, cash_2019, "Cash Contributors 2017", "Cash Contributors 2019", "Neighborhood Income Quintile",["C3","C4"], 
-    "income_quintile", "Cash Contributors in 2017 vs 2019: Participants by Census Tract Income Quintile", 4,"income")
+    "income_quintile", "Cash Contributors in 2017 vs 2019: Participants by Census Tract Income Quintile", 5,"income")
     
     # voucher ethnicity 
     plotting(vouchers_2017, vouchers_2019, "Vouchers 2017", "Vouchers 2019", "Estimated Ethnicity",["C1","C2"], 
-    "est_ethnicity", "Voucher Users in 2017 vs 2019: Participants by Estimated Ethnicity", 5)
+    "est_ethnicity", "Voucher Users in 2017 vs 2019: Participants by Estimated Ethnicity", 6)
 
     #cash ethnicity
     plotting(cash_2017, cash_2019, "Cash Contributors 2017", "Cash Contributors 2019", "Estimated Ethnicity",["C3","C4"], 
-    "est_ethnicity", "Cash Contributors in 2017 vs 2019: Participants by Estimated Ethnicity", 6)
+    "est_ethnicity", "Cash Contributors in 2017 vs 2019: Participants by Estimated Ethnicity", 7)
 
     # voucher gender
     plotting(vouchers_2017, vouchers_2019, "Vouchers 2017", "Vouchers 2019", "Gender",["C1","C2"], 
-    "Gender", "Voucher Users in 2017 vs 2019: Participants by Gender", 7)
+    "Gender", "Voucher Users in 2017 vs 2019: Participants by Gender", 8)
 
     # cash gender
     plotting(cash_2017, cash_2019, "Cash Contributors 2017", "Cash Contributors 2019", "Gender",["C3","C4"], 
-    "Gender", "Cash Contributors in 2017 vs 2019: Participants by Gender", 8)
+    "Gender", "Cash Contributors in 2017 vs 2019: Participants by Gender",9)
 
 
